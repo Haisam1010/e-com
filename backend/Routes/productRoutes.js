@@ -1,7 +1,6 @@
 import express from 'express';
 import asyncHandler from '../middleware/asyncHandler.js';
 import Product from '../models/productModel.js';
-
 const router = express.Router();
 
 router.get('/',asyncHandler(async (req, res) => {
@@ -10,14 +9,14 @@ router.get('/',asyncHandler(async (req, res) => {
 }))
 
 router.get('/:id',asyncHandler( async(req, res) => {
-    const product = await products.find((id) => id._id === req.params.id);
+    const {id} = req.params
+    const product = await Product.findById(id);
     
     if(product){
-        return res.json(product);
-    }
-    else{
-        res.status(404).json({message: 'Product not found'});
-    }
+        res.json(product)}
+        else{
+            res.status(404).json({message:'Product not found'})
+        }
 
 }))
 export default router;
