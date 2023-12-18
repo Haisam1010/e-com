@@ -17,7 +17,7 @@ const ProductScreen = () => {
     console.log(product)
 
     fetchProducts()
-  },[])
+  },[setProduct])
   return (
     <>
         <Link className='btn btn-light my-3' to='/'>
