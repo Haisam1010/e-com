@@ -1,7 +1,7 @@
-import asyncHandler from "../middleware/asyncHandler";
-import Product from "../models/productModel";
+import asyncHandler from "../middleware/asyncHandler.js";
+import Product from "../models/productModel.js";
 
-
+// Public route
 const getProducts = asyncHandler(async(req,res)=> {
     const products = await Product.find({});
     res.json(products);
