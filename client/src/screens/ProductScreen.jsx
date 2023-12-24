@@ -3,36 +3,36 @@ import { Row,Col,Card,ListGroup,Button,Image } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Loader from '../components/Loader'
 import { useGetProductDetailsQuery } from '../slices/productsAppSlice'
+import Message from '../components/Message'
 
 
 
 const ProductScreen = () => {
-    const {id:productId} = useParams()
-    const {data:product,isLoading,error} = useGetProductDetailsQuery(productId)
-  
+    const { id: productId } = useParams();
+    const {data:products,isLoading,error} =  useGetProductDetailsQuery(productId);
   return (
     <>
         <Link className='btn btn-light my-3' to='/'>
         Go Back
         </Link>
-        {isLoading ?  <Loader /> : error ? (<div>error?.data?.message || error.error</div>) : (
+        {isLoading ?  <Loader /> : error ? (<Message variant='danger'>{error?.data?.message || error.error}</Message>) : (
           <Row>
           <Col md={5}>
-              <Image src={product.image} alt={product.name} fluid />
+              <Image src={products.image} alt={products.name} fluid />
           </Col>
           <Col md={4}>
               <ListGroup variant='flush'>
                   <ListGroup.Item>
-                  <h3>{product.name}</h3>
+                  <h3>{products.name}</h3>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                  <Rating values={product.rating} text={`${product.numReviews} reviews`} />
+                  <Rating values={products.rating} text={`${products.numReviews} reviews`} />
                   </ListGroup.Item>
                   <ListGroup.Item>
-                  Price: ${product.price}
+                  Price: ${products.price}
                   </ListGroup.Item>
                   <ListGroup.Item>
-                  Description : {product.description}
+                  Description : {products.description}
                   </ListGroup.Item>
               </ListGroup>
           </Col>
@@ -43,7 +43,7 @@ const ProductScreen = () => {
                   <Row>
                   <Col>Price:</Col>
                   <Col>
-                  <strong>${product.price}</strong>
+                  <strong>${products.price}</strong>
                   </Col>
                   </Row>
                   </ListGroup.Item>
@@ -52,12 +52,12 @@ const ProductScreen = () => {
                   <Row>
                   <Col>Status:</Col>
                   <Col>
-                  <strong>{product.countInStock > 0 ? 'In Stocks': 'Out of Stock'}</strong>
+                  <strong>{products.countInStock > 0 ? 'In Stocks': 'Out of Stock'}</strong>
                   </Col>
                   </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                  <Button className='btn-block' type='button' disabled={product.countInStock === 0}>
+                  <Button className='btn-block' type='button' disabled={products.countInStock === 0}>
                   Add To Cart
                   </Button>
                   </ListGroup.Item>
