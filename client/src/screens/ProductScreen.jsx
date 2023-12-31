@@ -14,7 +14,7 @@ const ProductScreen = () => {
     const { id: productId } = useParams();
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {qty,setQty} = useState(1)
+    const [qty,setQty] = useState(1)
     const {data:products,isLoading,error} =  useGetProductDetailsQuery(productId);
     const addToCartHandler = () => {
         dispatch(addToCart({...products,qty}))
@@ -72,7 +72,7 @@ const ProductScreen = () => {
                         <Row>
                             <Col>Qty</Col>
                             <Col>
-                                <Form.Control as='select' value={qty} onChange={(e)=> setQty(Number(e.target.value))}>
+                                <Form.Control as='select' value={qty} onChange={(e) => setQty(Number(e.target.value))}>
                                     {[...Array(products.countInStock).keys()].map((x)=>(
                                         <option key={x+1} value={x+1}>
                                             {x + 1}
