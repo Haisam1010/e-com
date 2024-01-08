@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import connectDB from './config/db.js';
 import productRoutes from './Routes/productRoutes.js';
+import userRoutes from './Routes/userRoutes.js';
 import { notFound,errorHandler } from './middleware/errorMiddleware.js';
 
 
@@ -12,10 +13,12 @@ connectDB();
 const PORT = process.env.PORT || 5001;
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 
 // productRoutes is a middleware
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 
 // error handling middleware
 app.use(notFound);
