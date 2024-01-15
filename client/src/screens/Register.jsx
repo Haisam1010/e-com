@@ -65,7 +65,7 @@ const RegisterScreen = () => {
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control type="password" placeholder="Confirm password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
             </Form.Group>
-            <Button type="submit" variant="primary" className="mt-2" disabled={isLoading}>Register</Button>
+            <Button type="submit" variant="primary" className="mt-2" disabled={isLoading}>Register / Sign in</Button>
             {isLoading && <Loader/>}
         </Form>
         <Row className="py-3">
