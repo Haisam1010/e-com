@@ -5,6 +5,8 @@ dotenv.config();
 import connectDB from './config/db.js';
 import productRoutes from './Routes/productRoutes.js';
 import userRoutes from './Routes/userRoutes.js';
+import orderRoutes from './Routes/orderRoutes.js';
+
 import { notFound,errorHandler } from './middleware/errorMiddleware.js';
 
 
@@ -21,6 +23,7 @@ app.use(express.urlencoded({extended:true}));
 // productRoutes is a middleware
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
 
 // error handling middleware
 app.use(notFound);
