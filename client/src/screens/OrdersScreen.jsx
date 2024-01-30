@@ -7,9 +7,8 @@ import { useGetOrderQuery } from "../slices/ordersApiSlice"
 
 const OrdersScreen = () => {
   const {id:orderId} = useParams()
-   const {data:order,isLoading,error} = useGetOrderQuery(orderId)
-
-   console.log(orderId)
+   const {data:order,refetch,isLoading,isError} = useGetOrderQuery(orderId)
+   console.log(order)
   return (
     <div>
       order Page

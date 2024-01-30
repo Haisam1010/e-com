@@ -33,14 +33,16 @@ const PlaceOrderScreen = () => {
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
+        totalPrice: cart.TotalPrice,
       }).unwrap();
       dispatch(clearCart());
       navigate(`/order/${res._id}`);
     } catch (err) {
       toast.error(err);
     }
+    
   };
+
 
   return (
     <>
@@ -126,6 +128,7 @@ const PlaceOrderScreen = () => {
                 <Row>
                   <Col>Total</Col>
                   <Col>${cart.totalPrice}</Col>
+                
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
